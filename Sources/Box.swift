@@ -68,11 +68,11 @@ public protocol MustacheBoxable {
     var mustacheBox: MustacheBox { get }
 }
 
-@objc extension MustacheBox {
+extension MustacheBox {
     
     /// `MustacheBox` adopts the `MustacheBoxable` protocol so that it can feed
     /// Mustache templates. Its mustacheBox property returns itself.
-    @objc public override var mustacheBox: MustacheBox {
+    public var mustacheBox: MustacheBox {
         return self
     }
 }
