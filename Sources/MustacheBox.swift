@@ -35,7 +35,7 @@ import Foundation
 /// **Warning**: the fact that `MustacheBox` is a subclass of NSObject is an
 /// implementation detail that is enforced by the Swift language itself. This
 /// may change in the future: do not rely on it.
-final public class MustacheBox : NSObject {
+final public class MustacheBox {
     
     // IMPLEMENTATION NOTE
     //
@@ -438,7 +438,6 @@ final public class MustacheBox : NSObject {
         if let render = render {
             self.hasCustomRenderFunction = true
             self._render = render
-            super.init()
         } else {
             // The default render function: it renders {{variable}} tags as the
             // boxed value, and {{#section}}...{{/}} tags by adding the box to
@@ -451,7 +450,6 @@ final public class MustacheBox : NSObject {
             // initialized"
             self._render = { (_) in return Rendering("") }
             self.hasCustomRenderFunction = false
-            super.init()
             self._render = { [unowned self] (info: RenderingInfo) in
                 
                 // Default rendering depends on the tag type:
@@ -498,7 +496,7 @@ final public class MustacheBox : NSObject {
 
 extension MustacheBox {
     /// A textual representation of `self`.
-    override public var description: String {
+    public var description: String {
         let facets = self.facetsDescriptions
         switch facets.count {
         case 0:
