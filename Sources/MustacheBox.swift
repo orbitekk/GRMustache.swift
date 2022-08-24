@@ -556,3 +556,5 @@ extension MustacheBox {
         return facets
     }
 }
+
+extension MustacheBox: MustacheBoxable {}
